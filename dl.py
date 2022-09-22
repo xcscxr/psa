@@ -46,4 +46,4 @@ def psa_bypasser(psa_url):
 			
  
  
-psa_bypasser("https://psa.pm/movie/bubble-2022/")
+psa_bypasser(sys.argv[1])
