@@ -45,6 +45,7 @@ def psa_bypasser(psa_url):
 			try2link_scrape(exit_gate)
 		except: pass
 			
- 
- 
-psa_bypasser(sys.argv[1])
+
+while True:
+  a=input ("Ingrese su url:")
+  psa_bypasser(a)
