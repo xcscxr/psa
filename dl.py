@@ -38,14 +38,29 @@ def try2link_scrape(url):
 def psa_bypasser(psa_url):
 	client = cloudscraper.create_scraper(allow_brotli=False)
 	r = client.get(psa_url)
-	soup = BeautifulSoup(r.text, "html.parser").find_all(class_="dropshadowboxes-drop-shadow dropshadowboxes-rounded-corners dropshadowboxes-inside-and-outside-shadow dropshadowboxes-lifted-both dropshadowboxes-effect-default")
-	for link in soup:
-		try:
-			exit_gate = link.a.get("href")
-			try2link_scrape(exit_gate)
-		except: pass
+	option=-1
+	validinput=False
+	while not validinput:
+		option=int(input("1 direct links\n2 torrent link\n>:"))
+		validinput=[1,2].__contains__(option)
+	if (option==1):
+	    soup = BeautifulSoup(r.text, "html.parser").find_all(class_="dropshadowboxes-drop-shadow dropshadowboxes-rounded-corners dropshadowboxes-inside-and-outside-shadow dropshadowboxes-lifted-both dropshadowboxes-effect-default")
+	    for link in soup:
+		    try:
+    			exit_gate = link.a.get("href")
+    			try2link_scrape(exit_gate)
+		    except: pass
+	if (option==2):
+	    soup = BeautifulSoup(r.text, "html.parser").find_all(class_="alignnone size-full wp-image-1326")
+	    for link in soup:
+		    try:
+			    exit_gate = link.parent.find(name="a").get("href")
+			    try2link_scrape(exit_gate)
+		    except:
+			    pass
+
 			
 
 while True:
-  a=input ("Ingrese su url:")
-  psa_bypasser(a)
+    a=input ("Paste Psa url:")
+    psa_bypasser(a)
